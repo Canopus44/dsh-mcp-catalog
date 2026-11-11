@@ -30,7 +30,7 @@ MCP 目录会找出本机已经配置的 MCP 服务器，把它们导入 DeepSee
 
 ```bash
 # 在本仓库中
-dsh plugin --profile desktop add /dsh-mcp-catalog/的/绝对路径
+dsh plugin --profile desktop add file:/dsh-mcp-catalog/的/绝对路径
 ```
 
 或在应用中：设置 → 插件 → 安装 bundle → 选择该目录。替换已安装的副本后需要重启 DSH。
@@ -39,7 +39,7 @@ dsh plugin --profile desktop add /dsh-mcp-catalog/的/绝对路径
 
 仓库自带市场索引 `docs/market/index.json`。把它添加为自定义来源：
 
-1. 在设置 → 插件中启用实验性的 **Custom plugin markets** bundle。
+1. 打开**插件**，在**实验性插件**旁选择**更多**，启用 **Custom plugin markets**。
 2. 打开 **Discover** 标签页，添加来源 `https://canopus44.github.io/dsh-mcp-catalog/market/index.json`。
 3. 从那里安装 **MCP Catalog**。
 

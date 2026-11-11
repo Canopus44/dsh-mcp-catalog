@@ -30,7 +30,7 @@ Todo camino de instalación termina en el mismo formulario: revisas el comando o
 
 ```bash
 # desde este repositorio
-dsh plugin --profile desktop add /ruta/absoluta/a/dsh-mcp-catalog
+dsh plugin --profile desktop add file:/ruta/absoluta/a/dsh-mcp-catalog
 ```
 
 O en la aplicación: Ajustes → Complementos → instalar un bundle → elige la carpeta. Reinicia DSH después de reemplazar una copia ya instalada.
@@ -39,7 +39,7 @@ O en la aplicación: Ajustes → Complementos → instalar un bundle → elige l
 
 El repositorio incluye un índice de mercado en `docs/market/index.json`. Añádelo como fuente personalizada:
 
-1. Activa el bundle experimental **Custom plugin markets** en Ajustes → Complementos.
+1. Abre **Complementos**, elige **Más** junto a **Complementos experimentales** y activa **Custom plugin markets**.
 2. Abre la pestaña **Discover** y añade la fuente `https://canopus44.github.io/dsh-mcp-catalog/market/index.json`.
 3. Instala **MCP Catalog** desde ahí.
 

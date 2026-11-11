@@ -30,7 +30,7 @@ Every install path ends in the same form: you review the command or URL, fill in
 
 ```bash
 # from this repository
-dsh plugin --profile desktop add /absolute/path/to/dsh-mcp-catalog
+dsh plugin --profile desktop add file:/absolute/path/to/dsh-mcp-catalog
 ```
 
 Or in the app: Settings → Plugins → install a bundle → pick the folder. Restart DSH after replacing an already installed copy.
@@ -39,7 +39,7 @@ Or in the app: Settings → Plugins → install a bundle → pick the folder. Re
 
 The repository ships a market index at `docs/market/index.json`. Add it as a custom source:
 
-1. Enable the experimental **Custom plugin markets** bundle in Settings → Plugins.
+1. Open **Plugins**, choose **More** beside **Experimental plugins**, and switch on **Custom plugin markets**.
 2. Open the **Discover** tab and add the source `https://canopus44.github.io/dsh-mcp-catalog/market/index.json`.
 3. Install **MCP Catalog** from there.
 
