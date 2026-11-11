@@ -1,0 +1,73 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Canopus MCP tools",
+    "es": "Herramientas MCP de Canopus",
+    "zh": "Canopus MCP 工具"
+  },
+  "description": {
+    "en": "MCP servers for DeepSeek Harness: install, import, and mount them in the current session.",
+    "es": "Servidores MCP para DeepSeek Harness: instálalos, impórtalos y móntalos en la sesión actual.",
+    "zh": "面向 DeepSeek Harness 的 MCP 服务器：安装、导入并在当前会话中挂载。"
+  },
+  "metadata": {
+    "categories": [
+      {
+        "id": "tools",
+        "title": {
+          "en": "Tools",
+          "es": "Herramientas",
+          "zh": "工具"
+        }
+      }
+    ]
+  },
+  "plugins": [
+    {
+      "name": "dsh-mcp-catalog",
+      "title": {
+        "en": "MCP Catalog",
+        "es": "Catálogo MCP",
+        "zh": "MCP 目录"
+      },
+      "description": {
+        "en": "Discover MCP servers already configured on this machine, import them, and install from a catalog of 34 verified entries.",
+        "es": "Descubre los servidores MCP ya configurados en esta máquina, impórtalos e instala desde un catálogo de 34 entradas verificadas.",
+        "zh": "发现本机已配置的 MCP 服务器，导入它们，并从 34 个已验证条目中安装。"
+      },
+      "icon": "icons/dsh-mcp-catalog.svg",
+      "author": "Santiago Molina",
+      "homepage": "https://github.com/Canopus44/dsh-mcp-catalog",
+      "repository": {
+        "url": "https://github.com/Canopus44/dsh-mcp-catalog",
+        "directory": "."
+      },
+      "metadata": {
+        "category": "tools",
+        "labels": [
+          "mcp",
+          "marketplace",
+          "integration"
+        ],
+        "sortKeys": [
+          "name"
+        ]
+      },
+      "versions": [
+        {
+          "version": "0.1.0",
+          "publishTimestamp": 1794434575,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/Canopus44/dsh-mcp-catalog.git",
+            "commit": "b5cf3791f575e0345875c0bc694cd65d3b7f009e",
+            "path": "."
+          },
+          "engines": {
+            "dsh": ">=0.2.2-rc.1"
+          }
+        }
+      ]
+    }
+  ]
+}
