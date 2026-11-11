@@ -7,7 +7,6 @@
  */
 
 import { readFile } from 'node:fs/promises'
-import z from '@deepseek-ai/schemastery'
 import { createRoutes } from './lib/routes.js'
 import { createTools } from './lib/tools.js'
 import { ServerManager } from './lib/market.js'
@@ -15,17 +14,16 @@ import { ServerManager } from './lib/market.js'
 export const name = 'mcp-catalog'
 export const inject = ['tools', 'connection']
 
-export const Config = z.object({
-  autoStart: z.boolean().description('Mount the enabled servers when the plugin loads.').default(true),
-  stateFile: z.string().description('Override the servers.json path. Empty means $DSH_HOME/mcp-market/servers.json.').default(''),
-  extraSources: z.array(z.string()).description('Extra client config files to scan when importing.').default([]),
-})
-
-/** @param {any} ctx @param {{autoStart: boolean, stateFile: string, extraSources: string[]}} config */
+/** @param {any} ctx @param {{autoStart?: boolean, stateFile?: string, extraSources?: string[]}} [config] */
 export async function apply(ctx, config) {
+  const settings = {
+    autoStart: config?.autoStart !== false,
+    stateFile: typeof config?.stateFile === 'string' ? config.stateFile : '',
+    extraSources: Array.isArray(config?.extraSources) ? config.extraSources : [],
+  }
   const version = await readVersion()
   const manager = new ServerManager(ctx, {
-    file: config.stateFile === '' ? undefined : config.stateFile,
+    file: settings.stateFile === '' ? undefined : settings.stateFile,
     log: message => ctx.logger?.warn?.(`mcp-catalog: ${message}`),
   })
   await manager.load()
@@ -59,7 +57,7 @@ export async function apply(ctx, config) {
     }
   }, 'mcp-catalog: model tools')
 
-  if (config.autoStart) {
+  if (settings.autoStart) {
     // Mount in the background: a first npx download must not delay plugin
     // readiness or the page load that follows it.
     setTimeout(() => {

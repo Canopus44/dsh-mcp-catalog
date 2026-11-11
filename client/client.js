@@ -1014,7 +1014,7 @@ window.__ModuleLoader__.load({
     /* ---------------------------------------------------------------- styles */
 
     const CSS = `
-      .mc-root { max-width: 1040px; margin: 0 auto; padding: 28px 24px 64px; color: var(--dsw-alias-label-primary); font-size: 14px; line-height: 1.5; }
+      .mc-root { width: 100%; box-sizing: border-box; max-width: 1040px; margin: 0 auto; padding: 28px 24px 64px; color: var(--dsw-alias-label-primary); font-size: 14px; line-height: 1.5; }
       .mc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
       .mc-title { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
       .mc-subtitle { margin: 4px 0 0; color: var(--dsw-alias-label-secondary); }
