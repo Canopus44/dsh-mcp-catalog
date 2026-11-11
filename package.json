@@ -1,0 +1,71 @@
+{
+  "name": "dsh-mcp-catalog",
+  "version": "0.1.0",
+  "description": "MCP server marketplace for DeepSeek Harness: discover MCP servers installed on this machine, import them, browse a curated catalog, install from GitHub or any page, and mount them live through @deepseek-ai/dsh-mcp-client.",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Santiago Molina",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Canopus44/dsh-mcp-catalog.git"
+  },
+  "homepage": "https://github.com/Canopus44/dsh-mcp-catalog",
+  "bugs": {
+    "url": "https://github.com/Canopus44/dsh-mcp-catalog/issues"
+  },
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "dsh-plugin",
+    "mcp",
+    "mcp-server",
+    "marketplace",
+    "catalog"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client/client.js",
+    "./icon": "./assets/icon.svg",
+    "./locale/*.json": "./locale/*.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "client",
+    "data",
+    "locale",
+    "assets",
+    "cordis.patch.yml",
+    "README.md",
+    "README.es.md",
+    "README.zh.md",
+    "docs"
+  ],
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-locale"
+      ],
+      "platform": "web"
+    },
+    "engines": {
+      "dsh": ">=0.2.2-rc.1"
+    }
+  }
+}

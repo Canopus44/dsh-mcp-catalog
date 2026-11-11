@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "MCP 目录",
+    "description": "安装 MCP 服务器，导入其他客户端已有的配置，并在当前会话中查看它们的工具。",
+    "detail": "README.zh.md"
+  }
+}

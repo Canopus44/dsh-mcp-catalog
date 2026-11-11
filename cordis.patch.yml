@@ -1,0 +1,8 @@
+# dsh-mcp-catalog bundle patch
+#
+# Installed by `dsh plugin --profile <name> add <package-or-path>` or by the
+# Plugin Manager. The Host half owns its server list in
+# ~/.dsh/mcp-market/servers.json, so this row needs no config.
+- insert:
+    - id: mcp-market
+      name: dsh-mcp-catalog

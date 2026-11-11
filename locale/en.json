@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "MCP Catalog",
+    "description": "Install MCP servers, import the ones other clients already define, and read their tools in the current session.",
+    "detail": "README.md"
+  }
+}

@@ -1,0 +1,747 @@
+{
+  "format": 1,
+  "updated": "2026-11-11",
+  "categories": [
+    { "id": "development", "title": { "en": "Development", "es": "Desarrollo", "zh": "开发工具" } },
+    { "id": "databases", "title": { "en": "Databases", "es": "Bases de datos", "zh": "数据库" } },
+    { "id": "browser", "title": { "en": "Browser and testing", "es": "Navegador y pruebas", "zh": "浏览器与测试" } },
+    { "id": "cloud", "title": { "en": "Cloud and infrastructure", "es": "Nube e infraestructura", "zh": "云与基础设施" } },
+    { "id": "productivity", "title": { "en": "Productivity", "es": "Productividad", "zh": "效率协作" } },
+    { "id": "search", "title": { "en": "Search and web", "es": "Búsqueda y web", "zh": "搜索与网页" } }
+  ],
+  "servers": [
+    {
+      "id": "filesystem",
+      "name": "filesystem",
+      "title": "Filesystem",
+      "description": {
+        "en": "Read, write and search files under folders you explicitly allow.",
+        "es": "Lee, escribe y busca archivos solo en las carpetas que autorizas.",
+        "zh": "在你明确允许的目录中读写与搜索文件。"
+      },
+      "categories": ["development"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "{{FOLDER}}"],
+      "env": [],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "tags": ["files", "workspace"],
+      "note": {
+        "en": "Replace {{FOLDER}} with an absolute folder path before installing.",
+        "es": "Reemplaza {{FOLDER}} por una ruta absoluta antes de instalar.",
+        "zh": "安装前把 {{FOLDER}} 换成绝对路径。"
+      },
+      "verified": { "registry": "npm", "package": "@modelcontextprotocol/server-filesystem", "at": "2026-11-11" }
+    },
+    {
+      "id": "git",
+      "name": "git",
+      "title": "Git",
+      "description": {
+        "en": "Inspect a repository: status, diffs, logs and commits.",
+        "es": "Inspecciona un repositorio: estado, diffs, historial y commits.",
+        "zh": "查看仓库状态、差异、提交历史。"
+      },
+      "categories": ["development"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "{{REPOSITORY}}"],
+      "env": [],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/git",
+      "tags": ["git", "vcs"],
+      "note": {
+        "en": "Requires uv. Replace {{REPOSITORY}} with the path to a local clone.",
+        "es": "Requiere uv. Reemplaza {{REPOSITORY}} por la ruta de un clon local.",
+        "zh": "需要安装 uv。把 {{REPOSITORY}} 换成本地仓库路径。"
+      },
+      "verified": { "registry": "pypi", "package": "mcp-server-git", "at": "2026-11-11" }
+    },
+    {
+      "id": "github",
+      "name": "github",
+      "title": "GitHub",
+      "description": {
+        "en": "Repositories, issues and pull requests through GitHub's hosted server.",
+        "es": "Repositorios, issues y pull requests con el servidor alojado de GitHub.",
+        "zh": "通过 GitHub 托管服务器管理仓库、议题与拉取请求。"
+      },
+      "categories": ["development"],
+      "transport": "streamable-http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": { "Authorization": "Bearer {{GITHUB_PAT}}" },
+      "env": [
+        { "name": "GITHUB_PAT", "required": true, "secret": true, "description": "Fine-grained personal access token." }
+      ],
+      "homepage": "https://github.com/github/github-mcp-server",
+      "tags": ["github", "issues", "pull requests"],
+      "note": {
+        "en": "Use a fine-grained token and keep it read-only unless you need writes.",
+        "es": "Usa un token de granularidad fina y mantenlo de solo lectura salvo que necesites escribir.",
+        "zh": "建议使用细粒度令牌，除写入需求外保持只读。"
+      },
+      "verified": { "registry": "https", "package": "api.githubcopilot.com", "at": "2026-11-11" }
+    },
+    {
+      "id": "context7",
+      "name": "context7",
+      "title": "Context7",
+      "description": {
+        "en": "Up-to-date library documentation for the framework you are using.",
+        "es": "Documentación actualizada de librerías y frameworks.",
+        "zh": "获取最新的库与框架文档。"
+      },
+      "categories": ["development", "search"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": [
+        { "name": "CONTEXT7_API_KEY", "required": false, "secret": true, "description": "Optional higher rate limits." }
+      ],
+      "homepage": "https://github.com/upstash/context7",
+      "tags": ["docs", "reference"],
+      "verified": { "registry": "npm", "package": "@upstash/context7-mcp", "at": "2026-11-11" }
+    },
+    {
+      "id": "sequential-thinking",
+      "name": "sequential-thinking",
+      "title": "Sequential Thinking",
+      "description": {
+        "en": "A scratchpad for step-by-step reasoning with revision.",
+        "es": "Un bloc para razonar paso a paso y revisar el plan.",
+        "zh": "用于分步推理与修订的草稿工具。"
+      },
+      "categories": ["development"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "env": [],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+      "tags": ["reasoning"],
+      "verified": { "registry": "npm", "package": "@modelcontextprotocol/server-sequential-thinking", "at": "2026-11-11" }
+    },
+    {
+      "id": "memory",
+      "name": "memory",
+      "title": "Knowledge Graph Memory",
+      "description": {
+        "en": "A small persistent knowledge graph the model can read and extend.",
+        "es": "Un grafo de conocimiento persistente que el modelo puede leer y ampliar.",
+        "zh": "可供模型读取与扩展的持久化知识图谱。"
+      },
+      "categories": ["development"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": [
+        { "name": "MEMORY_FILE_PATH", "required": false, "secret": false, "description": "Defaults to memory.json in the working directory." }
+      ],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+      "tags": ["memory", "graph"],
+      "verified": { "registry": "npm", "package": "@modelcontextprotocol/server-memory", "at": "2026-11-11" }
+    },
+    {
+      "id": "time",
+      "name": "time",
+      "title": "Time",
+      "description": {
+        "en": "Current time and timezone conversions for any location.",
+        "es": "Hora actual y conversión de zonas horarias para cualquier lugar.",
+        "zh": "查询当前时间与时区换算。"
+      },
+      "categories": ["development"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-server-time"],
+      "env": [],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/time",
+      "tags": ["time", "timezone"],
+      "verified": { "registry": "pypi", "package": "mcp-server-time", "at": "2026-11-11" }
+    },
+    {
+      "id": "fetch",
+      "name": "fetch",
+      "title": "Fetch",
+      "description": {
+        "en": "Convert a web page into Markdown the model can read.",
+        "es": "Convierte una página web en Markdown que el modelo puede leer.",
+        "zh": "把网页转换为模型可读的 Markdown。"
+      },
+      "categories": ["search"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "env": [],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+      "tags": ["web", "markdown"],
+      "verified": { "registry": "pypi", "package": "mcp-server-fetch", "at": "2026-11-11" }
+    },
+    {
+      "id": "playwright",
+      "name": "playwright",
+      "title": "Playwright",
+      "description": {
+        "en": "Drive a real browser: navigate, click, fill forms, take snapshots.",
+        "es": "Controla un navegador real: navegar, clicar, rellenar formularios, capturas.",
+        "zh": "驱动真实浏览器：导航、点击、填表、快照。"
+      },
+      "categories": ["browser"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "env": [],
+      "homepage": "https://github.com/microsoft/playwright-mcp",
+      "tags": ["browser", "automation", "e2e"],
+      "verified": { "registry": "npm", "package": "@playwright/mcp", "at": "2026-11-11" }
+    },
+    {
+      "id": "chrome-devtools",
+      "name": "chrome-devtools",
+      "title": "Chrome DevTools",
+      "description": {
+        "en": "Inspect pages and performance traces from Chrome DevTools.",
+        "es": "Inspecciona páginas y trazas de rendimiento desde Chrome DevTools.",
+        "zh": "通过 Chrome DevTools 检查页面与性能。"
+      },
+      "categories": ["browser"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+      "env": [],
+      "homepage": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "tags": ["chrome", "devtools", "performance"],
+      "verified": { "registry": "npm", "package": "chrome-devtools-mcp", "at": "2026-11-11" }
+    },
+    {
+      "id": "puppeteer",
+      "name": "puppeteer",
+      "title": "Puppeteer",
+      "description": {
+        "en": "Script a headless Chromium for scraping and screenshots.",
+        "es": "Automatiza Chromium sin ventana para scraping y capturas.",
+        "zh": "用无头 Chromium 做抓取与截图。"
+      },
+      "categories": ["browser"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": [],
+      "homepage": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer",
+      "tags": ["browser", "scraping"],
+      "verified": { "registry": "npm", "package": "@modelcontextprotocol/server-puppeteer", "at": "2026-11-11" }
+    },
+    {
+      "id": "lighthouse",
+      "name": "lighthouse",
+      "title": "Lighthouse",
+      "description": {
+        "en": "Audit a page for performance, accessibility and best practices.",
+        "es": "Audita rendimiento, accesibilidad y buenas prácticas de una página.",
+        "zh": "审计页面性能、可访问性与最佳实践。"
+      },
+      "categories": ["browser"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "lighthouse-mcp"],
+      "env": [],
+      "homepage": "https://github.com/danielsogl/lighthouse-mcp",
+      "tags": ["lighthouse", "audit", "accessibility"],
+      "verified": { "registry": "npm", "package": "lighthouse-mcp", "at": "2026-11-11" }
+    },
+    {
+      "id": "brave-search",
+      "name": "brave-search",
+      "title": "Brave Search",
+      "description": {
+        "en": "Web and local search results through the Brave API.",
+        "es": "Resultados de búsqueda web y local con la API de Brave.",
+        "zh": "通过 Brave API 搜索网页与本地结果。"
+      },
+      "categories": ["search"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": [
+        { "name": "BRAVE_API_KEY", "required": true, "secret": true, "description": "Brave Search API subscription token." }
+      ],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search",
+      "tags": ["search"],
+      "verified": { "registry": "npm", "package": "@modelcontextprotocol/server-brave-search", "at": "2026-11-11" }
+    },
+    {
+      "id": "exa",
+      "name": "exa",
+      "title": "Exa",
+      "description": {
+        "en": "Neural web search with page contents for research.",
+        "es": "Búsqueda neuronal con contenido de páginas para investigar.",
+        "zh": "面向研究的神经网页搜索与正文抓取。"
+      },
+      "categories": ["search"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "exa-mcp-server"],
+      "env": [
+        { "name": "EXA_API_KEY", "required": true, "secret": true, "description": "API key from exa.ai." }
+      ],
+      "homepage": "https://github.com/exa-labs/exa-mcp-server",
+      "tags": ["search", "research"],
+      "verified": { "registry": "npm", "package": "exa-mcp-server", "at": "2026-11-11" }
+    },
+    {
+      "id": "tavily",
+      "name": "tavily",
+      "title": "Tavily",
+      "description": {
+        "en": "Search built for agents, with extracted page content.",
+        "es": "Búsqueda pensada para agentes, con contenido extraído de páginas.",
+        "zh": "为智能体设计的搜索，附带正文抽取。"
+      },
+      "categories": ["search"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "tavily-mcp@latest"],
+      "env": [
+        { "name": "TAVILY_API_KEY", "required": true, "secret": true, "description": "API key from tavily.com." }
+      ],
+      "homepage": "https://github.com/tavily-ai/tavily-mcp",
+      "tags": ["search", "research"],
+      "verified": { "registry": "npm", "package": "tavily-mcp", "at": "2026-11-11" }
+    },
+    {
+      "id": "firecrawl",
+      "name": "firecrawl",
+      "title": "Firecrawl",
+      "description": {
+        "en": "Crawl and scrape sites into clean Markdown.",
+        "es": "Rastrea y extrae sitios a Markdown limpio.",
+        "zh": "抓取整站并转换为干净的 Markdown。"
+      },
+      "categories": ["search"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": [
+        { "name": "FIRECRAWL_API_KEY", "required": true, "secret": true, "description": "API key from firecrawl.dev." }
+      ],
+      "homepage": "https://github.com/firecrawl/firecrawl-mcp-server",
+      "tags": ["crawl", "scrape"],
+      "verified": { "registry": "npm", "package": "firecrawl-mcp", "at": "2026-11-11" }
+    },
+    {
+      "id": "postgres",
+      "name": "postgres",
+      "title": "PostgreSQL",
+      "description": {
+        "en": "Query Postgres safely, with health checks and index advice.",
+        "es": "Consulta Postgres con seguridad, revisiones de salud y consejos de índices.",
+        "zh": "安全查询 PostgreSQL，并提供健康检查与索引建议。"
+      },
+      "categories": ["databases"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "postgres-mcp", "--access-mode=restricted"],
+      "env": [
+        { "name": "DATABASE_URI", "required": true, "secret": true, "description": "postgresql://user:password@host:5432/database" }
+      ],
+      "homepage": "https://github.com/crystaldba/postgres-mcp",
+      "tags": ["postgres", "sql"],
+      "note": {
+        "en": "Starts read-only in restricted mode. Point it at a replica or dev database.",
+        "es": "Arranca en solo lectura con el modo restricted. Úsalo contra una réplica o base de desarrollo.",
+        "zh": "以 restricted 模式只读启动，建议连接副本或开发库。"
+      },
+      "verified": { "registry": "npm", "package": "postgres-mcp", "at": "2026-11-11" }
+    },
+    {
+      "id": "sqlite",
+      "name": "sqlite",
+      "title": "SQLite",
+      "description": {
+        "en": "Read and query a local SQLite database file.",
+        "es": "Lee y consulta un archivo SQLite local.",
+        "zh": "读取并查询本地 SQLite 数据库文件。"
+      },
+      "categories": ["databases"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-server-sqlite", "--db-path", "{{DATABASE_PATH}}"],
+      "env": [],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite",
+      "tags": ["sqlite", "sql"],
+      "note": {
+        "en": "Replace {{DATABASE_PATH}} with the .sqlite file to open.",
+        "es": "Reemplaza {{DATABASE_PATH}} por el archivo .sqlite que quieres abrir.",
+        "zh": "把 {{DATABASE_PATH}} 换成要打开的 .sqlite 文件。"
+      },
+      "verified": { "registry": "pypi", "package": "mcp-server-sqlite", "at": "2026-11-11" }
+    },
+    {
+      "id": "mysql",
+      "name": "mysql",
+      "title": "MySQL",
+      "description": {
+        "en": "Explore schemas and run queries against MySQL.",
+        "es": "Explora esquemas y ejecuta consultas en MySQL.",
+        "zh": "浏览 MySQL 结构并执行查询。"
+      },
+      "categories": ["databases"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-server-mysql"],
+      "env": [
+        { "name": "MYSQL_HOST", "required": true, "secret": false, "description": "Database host name." },
+        { "name": "MYSQL_PORT", "required": false, "secret": false, "description": "Defaults to 3306." },
+        { "name": "MYSQL_USER", "required": true, "secret": false, "description": "Database user." },
+        { "name": "MYSQL_PASSWORD", "required": true, "secret": true, "description": "Database password." },
+        { "name": "MYSQL_DATABASE", "required": true, "secret": false, "description": "Schema to open." }
+      ],
+      "homepage": "https://github.com/designcomputer/mysql_mcp_server",
+      "tags": ["mysql", "sql"],
+      "verified": { "registry": "pypi", "package": "mcp-server-mysql", "at": "2026-11-11" }
+    },
+    {
+      "id": "mongodb",
+      "name": "mongodb",
+      "title": "MongoDB",
+      "description": {
+        "en": "Inspect collections and documents with a read-only connection.",
+        "es": "Inspecciona colecciones y documentos con conexión de solo lectura.",
+        "zh": "以只读连接查看集合与文档。"
+      },
+      "categories": ["databases"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "mongodb-mcp-server", "--readOnly"],
+      "env": [
+        { "name": "MDB_MCP_CONNECTION_STRING", "required": true, "secret": true, "description": "mongodb://user:password@host:27017/database" }
+      ],
+      "homepage": "https://github.com/mongodb-js/mongodb-mcp-server",
+      "tags": ["mongodb", "nosql"],
+      "verified": { "registry": "npm", "package": "mongodb-mcp-server", "at": "2026-11-11" }
+    },
+    {
+      "id": "redis",
+      "name": "redis",
+      "title": "Redis",
+      "description": {
+        "en": "Browse keys, inspect values and run read commands on Redis.",
+        "es": "Explora claves, inspecciona valores y ejecuta comandos de lectura en Redis.",
+        "zh": "浏览键、查看值并在 Redis 上执行读取命令。"
+      },
+      "categories": ["databases"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["redis-mcp-server", "--url", "redis://localhost:6379/0"],
+      "env": [],
+      "homepage": "https://github.com/redis/mcp-redis",
+      "tags": ["redis", "cache"],
+      "note": {
+        "en": "Edit the --url argument for your host, password and database number.",
+        "es": "Edita el argumento --url con tu host, contraseña y número de base.",
+        "zh": "按主机、密码与库编号修改 --url 参数。"
+      },
+      "verified": { "registry": "pypi", "package": "redis-mcp-server", "at": "2026-11-11" }
+    },
+    {
+      "id": "supabase",
+      "name": "supabase",
+      "title": "Supabase",
+      "description": {
+        "en": "Manage a Supabase project: SQL, migrations, edge functions.",
+        "es": "Administra un proyecto Supabase: SQL, migraciones y edge functions.",
+        "zh": "管理 Supabase 项目：SQL、迁移与边缘函数。"
+      },
+      "categories": ["databases", "cloud"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase@latest", "--project-ref={{PROJECT_REF}}"],
+      "env": [
+        { "name": "SUPABASE_ACCESS_TOKEN", "required": true, "secret": true, "description": "Personal access token from the Supabase dashboard." }
+      ],
+      "homepage": "https://github.com/supabase-community/supabase-mcp",
+      "tags": ["supabase", "postgres"],
+      "note": {
+        "en": "Set {{PROJECT_REF}} to the project's reference id. Add --read-only for safety.",
+        "es": "Pon el id de referencia en {{PROJECT_REF}}. Añade --read-only para mayor seguridad.",
+        "zh": "把 {{PROJECT_REF}} 换成项目引用 ID；可加 --read-only 提高安全性。"
+      },
+      "verified": { "registry": "npm", "package": "@supabase/mcp-server-supabase", "at": "2026-11-11" }
+    },
+    {
+      "id": "neon",
+      "name": "neon",
+      "title": "Neon",
+      "description": {
+        "en": "Create branches and query Neon serverless Postgres.",
+        "es": "Crea ramas y consulta Postgres serverless de Neon.",
+        "zh": "创建分支并查询 Neon 无服务器 Postgres。"
+      },
+      "categories": ["databases", "cloud"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@neondatabase/mcp-server-neon", "start", "{{NEON_API_KEY}}"],
+      "env": [
+        { "name": "NEON_API_KEY", "required": true, "secret": true, "description": "Neon API key; also injected into the args placeholder." }
+      ],
+      "homepage": "https://github.com/neondatabase/mcp-server-neon",
+      "tags": ["neon", "postgres", "serverless"],
+      "note": {
+        "en": "The server needs the API key as an argument; fill NEON_API_KEY and the placeholder is substituted.",
+        "es": "El servidor necesita la clave como argumento; rellena NEON_API_KEY y el marcador se sustituye.",
+        "zh": "该服务器要求把密钥作为参数；填写 NEON_API_KEY 后占位符会自动替换。"
+      },
+      "verified": { "registry": "npm", "package": "@neondatabase/mcp-server-neon", "at": "2026-11-11" }
+    },
+    {
+      "id": "clickhouse",
+      "name": "clickhouse",
+      "title": "ClickHouse",
+      "description": {
+        "en": "Run analytical queries over a ClickHouse cluster.",
+        "es": "Ejecuta consultas analíticas sobre un clúster ClickHouse.",
+        "zh": "在 ClickHouse 集群上运行分析查询。"
+      },
+      "categories": ["databases"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-clickhouse"],
+      "env": [
+        { "name": "CLICKHOUSE_HOST", "required": true, "secret": false, "description": "Server host name." },
+        { "name": "CLICKHOUSE_PORT", "required": false, "secret": false, "description": "Defaults to 8443 for TLS." },
+        { "name": "CLICKHOUSE_USER", "required": true, "secret": false, "description": "User name." },
+        { "name": "CLICKHOUSE_PASSWORD", "required": true, "secret": true, "description": "User password." },
+        { "name": "CLICKHOUSE_SECURE", "required": false, "secret": false, "description": "true to use TLS." }
+      ],
+      "homepage": "https://github.com/ClickHouse/mcp-clickhouse",
+      "tags": ["clickhouse", "analytics"],
+      "verified": { "registry": "pypi", "package": "mcp-clickhouse", "at": "2026-11-11" }
+    },
+    {
+      "id": "bigquery",
+      "name": "bigquery",
+      "title": "BigQuery",
+      "description": {
+        "en": "Explore datasets and run SQL in Google BigQuery.",
+        "es": "Explora datasets y ejecuta SQL en Google BigQuery.",
+        "zh": "浏览数据集并在 BigQuery 中执行 SQL。"
+      },
+      "categories": ["databases", "cloud"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-server-bigquery", "--project", "{{GCP_PROJECT}}", "--location", "US"],
+      "env": [],
+      "homepage": "https://github.com/LucasHild/mcp-server-bigquery",
+      "tags": ["bigquery", "gcp"],
+      "note": {
+        "en": "Uses Application Default Credentials. Set {{GCP_PROJECT}} and adjust --location.",
+        "es": "Usa Application Default Credentials. Define {{GCP_PROJECT}} y ajusta --location.",
+        "zh": "使用应用默认凭据；设置 {{GCP_PROJECT}} 并按需调整 --location。"
+      },
+      "verified": { "registry": "pypi", "package": "mcp-server-bigquery", "at": "2026-11-11" }
+    },
+    {
+      "id": "kubernetes",
+      "name": "kubernetes",
+      "title": "Kubernetes",
+      "description": {
+        "en": "List pods, read logs and inspect resources using your kubeconfig.",
+        "es": "Lista pods, lee logs e inspecciona recursos con tu kubeconfig.",
+        "zh": "通过 kubeconfig 查看 Pod、日志与资源。"
+      },
+      "categories": ["cloud"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-server-kubernetes"],
+      "env": [],
+      "homepage": "https://github.com/Flux159/mcp-server-kubernetes",
+      "tags": ["kubernetes", "devops"],
+      "note": {
+        "en": "Reads the current kubectl context. Use a namespace-scoped service account for shared clusters.",
+        "es": "Usa el contexto actual de kubectl. En clústeres compartidos, emplea una service account limitada a un namespace.",
+        "zh": "使用当前 kubectl 上下文；共享集群建议使用限定命名空间的账户。"
+      },
+      "verified": { "registry": "npm", "package": "mcp-server-kubernetes", "at": "2026-11-11" }
+    },
+    {
+      "id": "docker",
+      "name": "docker",
+      "title": "Docker",
+      "description": {
+        "en": "List containers and images and read Docker logs.",
+        "es": "Lista contenedores e imágenes y lee logs de Docker.",
+        "zh": "列出容器与镜像并读取 Docker 日志。"
+      },
+      "categories": ["cloud"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-server-docker"],
+      "env": [
+        { "name": "DOCKER_HOST", "required": false, "secret": false, "description": "Defaults to the local socket." }
+      ],
+      "homepage": "https://github.com/ckreiling/mcp-server-docker",
+      "tags": ["docker", "containers"],
+      "verified": { "registry": "pypi", "package": "mcp-server-docker", "at": "2026-11-11" }
+    },
+    {
+      "id": "atlassian",
+      "name": "atlassian",
+      "title": "Atlassian Jira and Confluence",
+      "description": {
+        "en": "Search Jira issues and read Confluence pages.",
+        "es": "Busca issues de Jira y lee páginas de Confluence.",
+        "zh": "搜索 Jira 议题并阅读 Confluence 页面。"
+      },
+      "categories": ["productivity"],
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-atlassian"],
+      "env": [
+        { "name": "JIRA_URL", "required": true, "secret": false, "description": "https://your-org.atlassian.net" },
+        { "name": "JIRA_USERNAME", "required": true, "secret": false, "description": "Account email." },
+        { "name": "JIRA_API_TOKEN", "required": true, "secret": true, "description": "API token from id.atlassian.com." },
+        { "name": "CONFLUENCE_URL", "required": false, "secret": false, "description": "Confluence base URL." },
+        { "name": "CONFLUENCE_USERNAME", "required": false, "secret": false, "description": "Confluence account email." },
+        { "name": "CONFLUENCE_API_TOKEN", "required": false, "secret": true, "description": "Confluence API token." }
+      ],
+      "homepage": "https://github.com/sooperset/mcp-atlassian",
+      "tags": ["jira", "confluence", "atlassian"],
+      "verified": { "registry": "pypi", "package": "mcp-atlassian", "at": "2026-11-11" }
+    },
+    {
+      "id": "slack",
+      "name": "slack",
+      "title": "Slack",
+      "description": {
+        "en": "Read channels and post messages with a bot token.",
+        "es": "Lee canales y publica mensajes con un token de bot.",
+        "zh": "使用机器人令牌读取频道并发送消息。"
+      },
+      "categories": ["productivity"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": [
+        { "name": "SLACK_BOT_TOKEN", "required": true, "secret": true, "description": "xoxb- bot token." },
+        { "name": "SLACK_TEAM_ID", "required": true, "secret": false, "description": "Workspace team id." }
+      ],
+      "homepage": "https://github.com/modelcontextprotocol/servers/tree/main/src/slack",
+      "tags": ["slack", "messaging"],
+      "verified": { "registry": "npm", "package": "@modelcontextprotocol/server-slack", "at": "2026-11-11" }
+    },
+    {
+      "id": "stripe",
+      "name": "stripe",
+      "title": "Stripe",
+      "description": {
+        "en": "Look up customers, payments and products in Stripe.",
+        "es": "Consulta clientes, pagos y productos en Stripe.",
+        "zh": "查询 Stripe 的客户、支付与产品。"
+      },
+      "categories": ["productivity"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@stripe/mcp", "--tools=all"],
+      "env": [
+        { "name": "STRIPE_SECRET_KEY", "required": true, "secret": true, "description": "Use a restricted key, not your live secret." }
+      ],
+      "homepage": "https://github.com/stripe/agent-toolkit",
+      "tags": ["stripe", "payments"],
+      "note": {
+        "en": "Start with a test-mode or restricted key; --tools=all exposes write tools.",
+        "es": "Empieza con una clave de prueba o restringida; --tools=all expone herramientas de escritura.",
+        "zh": "先用测试模式或受限密钥；--tools=all 会开放写入工具。"
+      },
+      "verified": { "registry": "npm", "package": "@stripe/mcp", "at": "2026-11-11" }
+    },
+    {
+      "id": "sentry",
+      "name": "sentry",
+      "title": "Sentry",
+      "description": {
+        "en": "Read issues, events and stack traces from Sentry.",
+        "es": "Lee issues, eventos y trazas de Sentry.",
+        "zh": "读取 Sentry 的议题、事件与堆栈。"
+      },
+      "categories": ["development"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@sentry/mcp-server"],
+      "env": [
+        { "name": "SENTRY_ACCESS_TOKEN", "required": true, "secret": true, "description": "User auth token with org:read, project:read and event:read." },
+        { "name": "SENTRY_HOST", "required": false, "secret": false, "description": "Defaults to sentry.io; set for self-hosted." }
+      ],
+      "homepage": "https://github.com/getsentry/sentry-mcp",
+      "tags": ["sentry", "errors", "monitoring"],
+      "verified": { "registry": "npm", "package": "@sentry/mcp-server", "at": "2026-11-11" }
+    },
+    {
+      "id": "linear",
+      "name": "linear",
+      "title": "Linear",
+      "description": {
+        "en": "Search and update Linear issues and projects.",
+        "es": "Busca y actualiza issues y proyectos de Linear.",
+        "zh": "搜索并更新 Linear 的议题与项目。"
+      },
+      "categories": ["productivity"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/mcp"],
+      "env": [],
+      "homepage": "https://linear.app/docs/mcp",
+      "tags": ["linear", "issues", "oauth"],
+      "note": {
+        "en": "Linear uses OAuth; mcp-remote opens a browser the first time and caches the token.",
+        "es": "Linear usa OAuth; mcp-remote abre el navegador la primera vez y guarda el token.",
+        "zh": "Linear 使用 OAuth；mcp-remote 首次会打开浏览器并缓存令牌。"
+      },
+      "verified": { "registry": "https", "package": "mcp.linear.app", "at": "2026-11-11" }
+    },
+    {
+      "id": "notion",
+      "name": "notion",
+      "title": "Notion",
+      "description": {
+        "en": "Search pages and databases in a Notion workspace.",
+        "es": "Busca páginas y bases de datos en un workspace de Notion.",
+        "zh": "在 Notion 工作区中搜索页面与数据库。"
+      },
+      "categories": ["productivity"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.notion.com/mcp"],
+      "env": [],
+      "homepage": "https://developers.notion.com/docs/mcp",
+      "tags": ["notion", "docs", "oauth"],
+      "note": {
+        "en": "OAuth through mcp-remote; grant access only to the pages you need.",
+        "es": "OAuth mediante mcp-remote; concede acceso solo a las páginas que necesites.",
+        "zh": "通过 mcp-remote 完成 OAuth；仅授权需要的页面。"
+      },
+      "verified": { "registry": "https", "package": "mcp.notion.com", "at": "2026-11-11" }
+    },
+    {
+      "id": "figma",
+      "name": "figma",
+      "title": "Figma",
+      "description": {
+        "en": "Read design files and extract components and styles.",
+        "es": "Lee archivos de diseño y extrae componentes y estilos.",
+        "zh": "读取设计文件并提取组件与样式。"
+      },
+      "categories": ["productivity"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.figma.com/mcp"],
+      "env": [],
+      "homepage": "https://developers.figma.com/docs/figma-mcp-server/",
+      "tags": ["figma", "design", "oauth"],
+      "note": {
+        "en": "OAuth through mcp-remote; a Figma account with access to the file is required.",
+        "es": "OAuth mediante mcp-remote; necesitas una cuenta con acceso al archivo.",
+        "zh": "通过 mcp-remote 完成 OAuth，需要拥有该文件访问权限的账号。"
+      },
+      "verified": { "registry": "https", "package": "mcp.figma.com", "at": "2026-11-11" }
+    }
+  ]
+}
