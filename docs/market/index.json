@@ -56,11 +56,11 @@
       "versions": [
         {
           "version": "0.1.0",
-          "publishTimestamp": 1794434575,
+          "publishTimestamp": 1794434735,
           "source": {
             "type": "git",
             "url": "https://github.com/Canopus44/dsh-mcp-catalog.git",
-            "commit": "b5cf3791f575e0345875c0bc694cd65d3b7f009e",
+            "commit": "38a27288a92f63f714502821b3f16052cab86a89",
             "path": "."
           },
           "engines": {
