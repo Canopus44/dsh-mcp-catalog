@@ -12,7 +12,7 @@ Es un bundle de complemento de DSH: una mitad Host que guarda la lista de servid
 | Zona | Comportamiento |
 | --- | --- |
 | Instalados | Lista cada servidor gestionado por este complemento, su estado de conexión y las herramientas que publicó (`mcp__<nombre>__*`). Conectar, editar, desactivar, reconectar, eliminar. |
-| Catálogo | 32 servidores curados entre desarrollo, bases de datos, navegador y pruebas, nube y DevOps, productividad y búsqueda. Busca por nombre, paquete, etiqueta o categoría. |
+| Catálogo | 34 servidores curados entre desarrollo, bases de datos, navegador y pruebas, nube y DevOps, productividad y búsqueda. Busca por nombre, paquete, etiqueta o categoría. |
 | Importar | Lee definiciones MCP de Claude Code, Claude Desktop, Cursor, VS Code, Codex, Gemini CLI y OpenCode (y sus equivalentes por proyecto), además de las filas que ya carga el perfil de DSH en marcha. No modifica ninguno de esos archivos. |
 | Lector de páginas | Descarga una página pública `https` o el README de GitHub, extrae bloques JSON `mcpServers` y líneas de instalación con `npx`, `uvx` o `pnpm`, y las ofrece como candidatas para revisar. |
 

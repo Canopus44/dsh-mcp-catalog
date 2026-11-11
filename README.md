@@ -12,7 +12,7 @@ This is a DSH plugin bundle: a Host half that owns the server list and mounts `@
 | Area | Behavior |
 | --- | --- |
 | Installed | Lists every server this plugin manages, its connection state, and the tools it published (`mcp__<name>__*`). Connect, edit, disable, reconnect, remove. |
-| Catalog | 32 curated servers across development, databases, browser and testing, cloud and DevOps, productivity, and search. Search by name, package, tag, or category. |
+| Catalog | 34 curated servers across development, databases, browser and testing, cloud and DevOps, productivity, and search. Search by name, package, tag, or category. |
 | Import | Reads MCP definitions from Claude Code, Claude Desktop, Cursor, VS Code, Codex, Gemini CLI, and OpenCode profiles (and their project-level equivalents), plus the rows the running DSH profile already loads. Nothing in those files is modified. |
 | Page reader | Fetches a public `https` page or GitHub README, extracts `mcpServers` JSON blocks and `npx` / `uvx` / `pnpm` install lines, and offers them as candidates for review. |
 
