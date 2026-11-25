@@ -742,6 +742,29 @@
         "zh": "通过 mcp-remote 完成 OAuth，需要拥有该文件访问权限的账号。"
       },
       "verified": { "registry": "https", "package": "mcp.figma.com", "at": "2026-11-11" }
+    },
+    {
+      "id": "kite",
+      "name": "kite",
+      "title": "Kite",
+      "description": {
+        "en": "Draw and edit real design layers (frames, text, components, auto layout) on a shared Kite canvas.",
+        "es": "Dibuja y edita capas de diseño reales (frames, texto, componentes, auto layout) en un lienzo compartido de Kite.",
+        "zh": "在共享的 Kite 画布上绘制和编辑真实的设计图层（画框、文本、组件、自动布局）。"
+      },
+      "categories": ["productivity"],
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://kite.new/api/mcp"],
+      "env": [],
+      "homepage": "https://kite.new/docs",
+      "tags": ["kite", "design", "oauth"],
+      "note": {
+        "en": "OAuth through mcp-remote; a free Kite account is enough.",
+        "es": "OAuth mediante mcp-remote; basta con una cuenta gratuita de Kite.",
+        "zh": "通过 mcp-remote 完成 OAuth，免费 Kite 账号即可。"
+      },
+      "verified": { "registry": "https", "package": "kite.new", "at": "2026-11-25" }
     }
   ]
 }
